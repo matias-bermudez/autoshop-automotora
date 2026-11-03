@@ -4,7 +4,7 @@
 //   node scripts/generar.js --local --ejemplos
 //
 // Las fotos se toman de ejemplos/fotos/ (en vez del bucket de Supabase).
-// Datos propios de AutoShop en `extra`: version, sede ('Batlle' | 'Garzón'), cuota (U$S por mes, 60 cuotas),
+// Datos propios de AutoShop en `extra`: version, sede ('Batlle' | 'Garzón'), cuota ($ por mes, 60 cuotas),
 // entrega_pct (si es distinta a la general), sin_km (km a consultar).
 window.AS_EJEMPLOS = [
   {
@@ -14,7 +14,7 @@ window.AS_EJEMPLOS = [
     precio: 16900, moneda: 'USD', etiqueta: null, destacado: true, estado: 'disponible', publicado: true,
     acepta_permuta: true, equipamiento: ['Llantas negras'], descripcion: null,
     fotos: ['honda-civic.jpg'],
-    extra: { sede: 'Batlle', cuota: 375, sin_km: true }
+    extra: { sede: 'Batlle', cuota: 15000, sin_km: true }
   },
   {
     id: 2, slug: 'toyota-aqua-2018', created_at: '2026-10-30T12:00:00Z', updated_at: '2026-10-30T12:00:00Z',
@@ -24,7 +24,7 @@ window.AS_EJEMPLOS = [
     acepta_permuta: true, equipamiento: ['Aire acondicionado', 'Dirección asistida', 'Airbags', 'ABS', 'Vidrios eléctricos', 'Pantalla multimedia', 'Cámara de retroceso'],
     descripcion: 'Auto de ejemplo para probar la web en local.',
     fotos: ['toyota-aqua.jpg'],
-    extra: { version: 'S', sede: 'Batlle', cuota: 298 }
+    extra: { version: 'S', sede: 'Batlle', cuota: 11900 }
   },
   {
     id: 3, slug: 'lifan-320-2012', created_at: '2026-10-28T12:00:00Z', updated_at: '2026-10-28T12:00:00Z',

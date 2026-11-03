@@ -12,10 +12,10 @@ window.AS_CONFIG = {
   facebook: '',                 // link o usuario de la página
   dolar: 40,                    // pesos por dólar, aproximado: solo para ordenar y filtrar autos en distintas monedas
 
-  // Financiación ("¿Estás en el clearing?"). La cuota de cada auto la carga el dueño en el panel (extra.cuota, en U$S).
+  // Financiación ("¿Estás en el clearing?"). La cuota de cada auto la carga el dueño en el panel (extra.cuota, en pesos, como en sus publicaciones).
   cuotas: 60,                   // cantidad de cuotas de la financiación sin clearing
   entregaPct: 50,               // entrega para quien está en el clearing, en % del precio (cada auto puede tener otro)
-  condiciones: 'Sujetas a aprobación. Consultá requisitos y condiciones por WhatsApp.',
+  condiciones: 'Sin clearing: ingresos líquidos mayores a $ 31.000 y 6 meses de antigüedad laboral. En clearing: entregás el 50 % y el resto hasta en 36 cuotas en pesos fijos, con recibo de sueldo o ingresos y constancia de domicilio.',
 
   // Locales. `nombre` es lo que se guarda en cada auto (extra.sede) y en negocios.extra.sedes.
   // whatsapp/whatsappLabel vacíos = se usa el WhatsApp general. `mapa`: lo que se busca en Google Maps.

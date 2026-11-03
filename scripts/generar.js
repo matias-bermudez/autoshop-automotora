@@ -301,7 +301,7 @@ const facebookUrl = () => (/^https?:\/\//.test(C.facebook) ? C.facebook : `https
 const autosEn = (s) => AUTOS.filter((a) => a.sede === s).length;
 const nAutos = (n) => (n === 1 ? '1 auto' : n + ' autos');
 const pctFmt = (p) => p + ' %';
-const cuotaFmt = (a) => (a.cuota ? 'U$S ' + miles(a.cuota) : '');
+const cuotaFmt = (a) => (a.cuota ? '$ ' + miles(a.cuota) : '');
 const entregaFmt = (a) => (a.entrega ? AS.precio(a.entrega, a.moneda) : '');
 
 // Logo + "AutoShop" del encabezado.
@@ -629,7 +629,7 @@ function generarCatalogo() {
     sedesMovil: `<div class="chips chips--scroll solo-movil">${chip('sede', '', 'Todas', true)}${sedesOpc.map(([v, l]) => chip('sede', v, l)).join('')}</div>`,
     grupos,
     grilla: AUTOS.map((a, i) => card(a, i, raiz)).join('\n'),
-    nota: hay ? `<p class="nota js-only">Cuotas en dólares, aproximadas. ${esc(C.condiciones)}</p>` : '',
+    nota: hay ? `<p class="nota js-only">Cuotas en pesos, aproximadas. ${esc(C.condiciones)}</p>` : '',
     // Sin resultados: con autos es "con estos filtros"; sin ningún auto publicado, invita a consultar.
     vacioOculto: hay ? ' hidden' : '',
     vacioTitulo: hay ? 'Con estos filtros no tenemos nada ahora.' : 'Ahora no hay autos publicados en la web.',

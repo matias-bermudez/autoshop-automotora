@@ -202,7 +202,7 @@ function pintarLista() {
       !a.publicado && '<span class="p-chip">Oculto</span>',
       !a.fotos.length && '<span class="p-chip p-chip--warn">Sin fotos</span>'
     ].filter(Boolean).join('');
-    const sub = [sedeEtiqueta(x.sede), x.version, x.cuota ? `${C.cuotas} × U$S ${AS.miles(x.cuota)}` : ''].filter(Boolean).join(' · ');
+    const sub = [sedeEtiqueta(x.sede), x.version, x.cuota ? `${C.cuotas} × $ ${AS.miles(x.cuota)}` : ''].filter(Boolean).join(' · ');
     return `<article class="p-item${actual && actual.id === a.id ? ' p-item--activo' : ''}" data-id="${a.id}">
       <div class="p-item__cab">
         <div class="p-item__foto">${media}${a.destacado ? '<span class="p-item__dest">Destacado</span>' : ''}</div>
@@ -424,7 +424,7 @@ function ayudaPrecio() {
   const pct = Number(el.entrega_pct.value.replace(/\D/g, '')) || C.entregaPct;
   const precio = Number(el.precio.value.replace(/\D/g, ''));
   const entrega = precio ? ` (${AS.precio(Math.round((precio * pct) / 100), elegido('moneda'))})` : '';
-  $('#ayuda-precio').textContent = `En la web se ve: "${cuota ? `${C.cuotas} cuotas de U$S ${AS.miles(cuota)} aprox.` : 'Consultá la cuota'}" o "entregando el ${pct} %${entrega}".`;
+  $('#ayuda-precio').textContent = `En la web se ve: "${cuota ? `${C.cuotas} cuotas de $ ${AS.miles(cuota)} aprox.` : 'Consultá la cuota'}" o "entregando el ${pct} %${entrega}".`;
 }
 form.addEventListener('input', (e) => {
   if (['precio', 'cuota', 'entrega_pct', 'moneda'].includes(e.target.name)) ayudaPrecio();
