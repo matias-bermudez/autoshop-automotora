@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+_site/
+.cache/
+# Se regeneran con diseno/desempaquetar.py
+diseno/assets/
+diseno/paginas/*/assets/
