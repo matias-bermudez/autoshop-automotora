@@ -1,0 +1,80 @@
+{{> head}}
+<body class="{{claseBody}}" data-raiz="{{raiz}}">
+{{header}}
+<main>
+<section class="hero" aria-labelledby="pregunta">
+  <div class="wrap hero__in">
+    <div class="hero__txt">
+      <p class="hero__intro"><span class="solo-esc">{{intro}}</span><span class="solo-movil">Automotora en Montevideo. Usados con financiación propia.</span></p>
+      <h1 id="pregunta" class="hero__h1">¿Estás en el <span>clearing?</span></h1>
+      <p class="hero__sub">Igual te llevás el auto. Elegí tu caso y <span class="solo-esc">toda la web te muestra</span><span class="solo-movil">te mostramos</span> cómo lo pagás.</p>
+      <div class="opciones js-only" role="group" aria-label="Tu situación en el clearing">
+        <button type="button" class="opcion" data-clearing-btn="no" aria-pressed="false">
+          <span class="cartel">No estoy en el clearing</span>
+          <span class="opcion__grande">Llevalo 100% financiado</span>
+          <span class="opcion__chico">En {{cuotas}} cuotas, sin entrega.</span>
+        </button>
+        <button type="button" class="opcion" data-clearing-btn="si" aria-pressed="false">
+          <span class="cartel">Estoy en el clearing</span>
+          <span class="opcion__grande">Entregá el {{pct}}%</span>
+          <span class="opcion__chico">El resto te lo financiamos.</span>
+        </button>
+      </div>
+      <p class="hero__listo v v-elegido">Listo. Los precios del catálogo ya muestran tu forma de pago. <a href="{{raiz}}autos/">Ver los autos</a></p>
+    </div>
+    <div class="hero__card">
+      {{heroCard}}
+    </div>
+  </div>
+  <div class="damero" aria-hidden="true"></div>
+</section>
+
+{{destacados}}
+
+<section class="financiamos" aria-labelledby="financiamos">
+  <div class="wrap">
+    <h2 id="financiamos" class="h2">Financiamos nosotros</h2>
+    <p class="financiamos__sub">Sin banco de por medio. Lo que cambia es si estás o no en el clearing.</p>
+    <div class="flyer">
+      <div class="flyer__col flyer__col--no">
+        <span class="cartel cartel--g">Si no estás en el clearing</span>
+        <div class="flyer__num">100%</div>
+        <div class="flyer__titulo">financiado en {{cuotas}} cuotas</div>
+        <p class="flyer__txt">{{finNo}}</p>
+        <p class="flyer__cond">{{condiciones}}</p>
+      </div>
+      <div class="flyer__col flyer__col--si">
+        <span class="cartel cartel--g">Si estás en el clearing</span>
+        <div class="flyer__num">{{pct}}%</div>
+        <div class="flyer__titulo">de entrega y el resto te lo financiamos</div>
+        <p class="flyer__txt">{{finSi}}</p>
+        <p class="flyer__cond">{{condiciones}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="locales" aria-labelledby="donde">
+  <div class="wrap">
+    <h2 id="donde" class="h2"><span class="solo-esc">{{tituloLocales}}</span><span class="solo-movil">{{tituloLocalesMovil}}</span></h2>
+    <div class="locales__grilla">
+{{sedes}}
+    </div>
+  </div>
+</section>
+
+<section class="banda-vende">
+  <div class="wrap banda-vende__in">
+    <div>
+      <h2 class="banda-vende__t">¿Tenés un auto para entregar?</h2>
+      <p>Lo tomamos como parte de pago o te lo compramos.</p>
+    </div>
+    <a class="btn btn--negro btn--grande" href="{{raiz}}vende-tu-auto/">Cotizar mi auto</a>
+  </div>
+</section>
+</main>
+{{pie}}
+{{> fab}}
+<div class="barra-movil solo-movil"><a class="btn btn--wa btn--bloque btn--grande" href="{{wa.href}}">{{wa.icono}} Escribinos por WhatsApp</a></div>
+</body>
+</html>

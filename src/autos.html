@@ -1,0 +1,66 @@
+{{> head}}
+<body class="{{claseBody}}" data-raiz="{{raiz}}">
+{{header}}
+<div class="barra-clearing js-only"{{controles}}>
+  <div class="wrap barra-clearing__in" role="group" aria-label="¿Estás en el clearing?">
+    <span class="barra-clearing__t">¿Estás en el clearing?</span>
+    <div class="seg seg--barra solo-esc">{{segmentoEsc}}</div>
+    <div class="seg seg--barra solo-movil">{{segmentoMovil}}</div>
+    <span class="barra-clearing__txt solo-esc"><span class="v v-ambos">Elegí y te mostramos cómo pagás cada auto.</span><span class="v v-no">Te mostramos la cuota en {{cuotas}} meses, sin entrega.</span><span class="v v-si">Te mostramos cuánto entregás. El resto te lo financiamos.</span></span>
+  </div>
+</div>
+<main class="wrap catalogo">
+  <div class="catalogo__cab">
+    <div>
+      <h1 class="h1">Catálogo</h1>
+      <p class="catalogo__conteo" aria-live="polite"><span data-conteo>{{conteo}}</span><span class="solo-movil js-only"{{controles}}> · <span class="v v-ambos">elegí arriba cómo pagás</span><span class="v v-no">precios con cuota</span><span class="v v-si">precios con entrega</span></span></p>
+    </div>
+    <div class="catalogo__orden js-only"{{controles}}>
+      <button type="button" class="btn btn--blanco catalogo__filtros-btn solo-movil" aria-expanded="false" aria-controls="filtros" data-abrir-filtros>{{ic.filtros}} Filtros<span data-n-filtros></span></button>
+      <label class="orden"><span class="orden__l">Ordenar por</span>
+        <select data-orden>
+          <option value="recientes">Más recientes</option>
+          <option value="menor">Menor precio</option>
+          <option value="mayor">Mayor precio</option>
+          <option value="cuota">Cuota más baja</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="js-only"{{controles}}>{{sedesMovil}}</div>
+  <div class="chips chips--activos solo-movil" data-activos hidden></div>
+
+  <div class="catalogo__cuerpo">
+    <aside class="filtros js-only" id="filtros" aria-label="Filtros"{{controles}}>
+{{grupos}}
+      <button type="button" class="link-fuerte filtros__borrar solo-esc" data-limpiar>Borrar filtros</button>
+      <div class="filtros__acciones solo-movil">
+        <button type="button" class="btn btn--borde-b" data-limpiar>Borrar</button>
+        <button type="button" class="btn btn--rojo" data-cerrar-filtros>Ver <span data-conteo>{{conteo}}</span></button>
+      </div>
+    </aside>
+
+    <div class="catalogo__lista">
+      <div class="grilla" data-grilla>
+{{grilla}}
+      </div>
+      {{nota}}
+      <div class="vacio" data-vacio{{vacioOculto}}>
+        <div class="vacio__num">U$S <span>0</span> autos</div>
+        <h2 class="vacio__t">{{vacioTitulo}}</h2>
+        <p class="vacio__p">Entran autos todas las semanas. Decinos qué buscás y te avisamos por WhatsApp cuando llegue.</p>
+        <div class="vacio__btns">
+          {{vacioBorrar}}
+          <a class="btn btn--wa" href="{{busca}}" data-avisame>Avisame por WhatsApp</a>
+        </div>
+      </div>
+      <div class="parecido" data-parecido hidden>
+        <h2 class="parecido__t">Lo más parecido que tenemos</h2>
+      </div>
+    </div>
+  </div>
+</main>
+{{pie}}
+{{> fab}}
+</body>
+</html>

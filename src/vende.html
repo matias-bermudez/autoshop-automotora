@@ -1,0 +1,56 @@
+{{> head}}
+<body class="{{claseBody}}" data-raiz="{{raiz}}">
+{{header}}
+<main class="wrap vende">
+  <h1 class="h1 vende__h1">Vendé o permutá <span>tu auto</span></h1>
+  <p class="vende__sub"><span class="solo-esc">Completá estos datos y te llega todo ordenado a nuestro WhatsApp. Te respondemos con una cotización.</span><span class="solo-movil">Completá y te llega todo ordenado a nuestro WhatsApp.</span></p>
+  <div class="vende__cuerpo">
+    <form class="vende__form" id="f-vende" aria-label="Datos de tu auto" novalidate>
+      <fieldset class="campos campos--2">
+        <legend class="vende__legend">Tu auto</legend>
+        <label class="campo">Marca<input name="marca" type="text" placeholder="Ej.: Chevrolet" autocomplete="off"></label>
+        <label class="campo">Modelo<input name="modelo" type="text" placeholder="Ej.: Onix" autocomplete="off"></label>
+        <label class="campo">Año<input name="anio" type="text" inputmode="numeric" placeholder="Ej.: 2015" autocomplete="off"></label>
+        <label class="campo">Kilómetros<input name="km" type="text" inputmode="numeric" placeholder="Ej.: 98.000" autocomplete="off"></label>
+      </fieldset>
+      <fieldset class="opciones-chip js-only">
+        <legend>¿Tiene deuda? (patente, multas o prenda)</legend>
+        <div class="chips chips--vende" data-grupo="deuda">
+          <button type="button" class="chip" aria-pressed="true">No tiene</button>
+          <button type="button" class="chip" aria-pressed="false">Sí, patente o multas</button>
+          <button type="button" class="chip" aria-pressed="false">Sí, prenda</button>
+        </div>
+      </fieldset>
+      <fieldset class="opciones-chip js-only">
+        <legend>¿Qué buscás a cambio?</legend>
+        <div class="chips chips--vende" data-grupo="busca">
+          <button type="button" class="chip" aria-pressed="false">Plata</button>
+          <button type="button" class="chip" aria-pressed="true">Otro auto del catálogo</button>
+          <button type="button" class="chip" aria-pressed="false">Todavía no sé</button>
+        </div>
+        <label class="campo campo--cual" data-cual>¿Cuál te interesa? (opcional)<input name="cual" type="text" placeholder="Ej.: el Toyota Aqua del catálogo" autocomplete="off"></label>
+      </fieldset>
+      <fieldset class="campos campos--2">
+        <legend class="vende__legend">Vos</legend>
+        <label class="campo">Nombre<input name="nombre" type="text" autocomplete="given-name" placeholder="Tu nombre"></label>
+        <label class="campo">Celular<input name="celular" type="tel" autocomplete="tel" placeholder="09X XXX XXX"></label>
+      </fieldset>
+      <p class="vende__nota solo-esc">Fotos de tu auto: mandalas en el mismo chat de WhatsApp.</p>
+    </form>
+
+    <aside class="vende__previa" aria-label="Vista previa del mensaje">
+      <h2 class="vende__asi solo-movil">Así nos llega:</h2>
+      <div class="chat">
+        <div class="chat__cab solo-esc"><img src="{{raiz}}img/logo.png" alt="" width="36" height="36"><div><div class="chat__nombre">AutoShop Automotora</div><div class="chat__sub">Vista previa · así nos llega</div></div></div>
+        <div class="chat__fondo"><div class="chat__burbuja" data-previa aria-live="polite">Hola AutoShop, quiero vender o permutar mi auto.</div></div>
+      </div>
+      <p class="vende__nota solo-movil">Las fotos de tu auto mandalas en el mismo chat.</p>
+      <a class="btn btn--wa btn--enorme solo-esc" href="{{wa.href}}" data-enviar>{{wa.icono}} Enviar por WhatsApp</a>
+      <p class="vende__va solo-esc">Va al {{wa.label}}. No guardamos tus datos en la web.</p>
+    </aside>
+  </div>
+</main>
+{{pie}}
+<div class="barra-movil solo-movil"><a class="btn btn--wa btn--bloque btn--grande" href="{{wa.href}}" data-enviar>{{wa.icono}} Enviar por WhatsApp</a></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{{> head}}
+<body class="pagina-404" data-raiz="{{raiz}}">
+{{header}}
+<main class="e404">
+  <p class="e404__pre">Esta página no existe</p>
+  <h1 class="e404__h1">ERROR <span>404</span></h1>
+  <div class="e404__cajas">
+    <div class="e404__caja">
+      <span class="cartel">Si buscabas un auto</span>
+      <span class="e404__t">Capaz que ya se vendió</span>
+      <a class="btn btn--blanco" href="{{raiz}}autos/">Ver los autos que quedan</a>
+    </div>
+    <div class="e404__caja">
+      <span class="cartel">Si te perdiste</span>
+      <span class="e404__t">Te ayudamos por WhatsApp</span>
+      <a class="btn btn--wa" href="{{wa.href}}">Escribinos</a>
+    </div>
+  </div>
+  <a class="e404__volver" href="{{raiz}}">Volver al inicio</a>
+</main>
+<div class="damero damero--abajo" aria-hidden="true"></div>
+<footer class="e404__pie">
+{{sedes}}
+</footer>
+</body>
+</html>

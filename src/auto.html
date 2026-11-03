@@ -1,0 +1,61 @@
+{{> head}}
+<body class="{{claseBody}}" data-raiz="{{raiz}}">
+{{header}}
+<main class="wrap ficha">
+  <nav class="migas solo-esc" aria-label="Ruta"><a href="{{raiz}}autos/">Catálogo</a> / {{a.nombre}}</nav>
+  <div class="ficha__cuerpo">
+    <section class="ficha__principal" aria-label="Fotos y datos">
+      <div class="galeria" data-galeria>
+        <div class="galeria__marco">
+{{galeria.principal}}
+{{a.reservado}}
+{{galeria.flechas}}
+        </div>
+        {{galeria.thumbs}}
+      </div>
+
+      <div class="ficha__resumen-movil solo-movil">
+        <h1 class="ficha__h1">{{a.nombre}}</h1>
+        <p class="ficha__sub">{{a.sub}}</p>
+        {{a.precio}}
+      </div>
+
+      <h2 class="h3">Datos principales</h2>
+      <dl class="datos">{{datos}}</dl>
+      {{equipamiento}}
+      {{vendedor}}
+    </section>
+
+    <aside class="ficha__compra" aria-label="Precio y contacto">
+      <div class="solo-esc">
+        <h1 class="ficha__h1">{{a.nombre}}</h1>
+        <p class="ficha__sub">{{a.sub}}</p>
+      </div>
+      <div class="ficha-precio">
+        <div class="solo-esc">{{a.precio}}</div>
+        <div class="ficha-precio__clearing js-only" role="group" aria-label="¿Estás en el clearing?">
+          <div class="ficha-precio__pregunta">¿Estás en el clearing?</div>
+          <div class="seg seg--ficha">{{segmento}}</div>
+        </div>
+        <div class="ficha-pago js-only" aria-live="polite">
+{{pagoFicha}}
+          <div class="ficha-pago__cond">{{condiciones}}</div>
+        </div>
+      </div>
+      <a class="btn btn--wa btn--enorme solo-esc" href="{{consulta}}" data-me-interesa {{msgAttrs}}>{{wa.icono}} Me interesa</a>
+      <div class="mensaje">
+        <div class="mensaje__l"><span class="solo-esc">Se abre WhatsApp con este mensaje:</span><span class="solo-movil">"Me interesa" abre WhatsApp con este mensaje:</span></div>
+        <div class="mensaje__burbuja" data-mensaje {{msgAttrs}}>{{mensaje}}</div>
+      </div>
+      {{lugar}}
+    </aside>
+  </div>
+  {{parecidos}}
+</main>
+{{pie}}
+<div class="barra-movil barra-ficha solo-movil">
+  <div class="barra-ficha__info">{{a.precioMini}}<div class="barra-ficha__pago js-only">{{miniPago}}</div></div>
+  <a class="btn btn--wa barra-ficha__btn" href="{{consulta}}" data-me-interesa {{msgAttrs}}>{{wa.icono}} Me interesa</a>
+</div>
+</body>
+</html>
