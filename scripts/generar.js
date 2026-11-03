@@ -520,6 +520,9 @@ function generarPaginas() {
     urls.map(([loc, lastmod, prio]) => `  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><priority>${prio}</priority></url>`).join('\n') +
     '\n</urlset>\n');
   escribir('robots.txt', `User-agent: *\nAllow: /\nDisallow: ${BASE}admin/\n\nSitemap: ${SITIO}sitemap.xml\n`);
+  // Cloudflare Pages: el panel y estado.json sin caché (el panel compara estado.json para avisar "Publicándose…").
+  escribir('_headers', `${BASE}admin/*\n  Cache-Control: no-cache\n  X-Robots-Tag: noindex, nofollow\n\n` +
+    `${BASE}estado.json\n  Cache-Control: no-cache\n  Access-Control-Allow-Origin: *\n`);
 }
 
 function generarInicio() {

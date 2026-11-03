@@ -32,7 +32,7 @@ window.AS_CONFIG = {
   concesionaria: 'autoshop',
 
   // URL pública del sitio, con / al final. Si se compra dominio, cambiarla acá.
-  sitio: 'https://matias-bermudez.github.io/autoshop-automotora/',
+  sitio: 'https://autoshop-automotora.pages.dev/',
 
   // false = Google no indexa la web (meta noindex). Pasar a true recién al lanzar.
   indexar: false

@@ -3,7 +3,7 @@
 Web de **AutoShop Automotora** (autos usados con financiación propia, Montevideo; locales en Bv. Batlle y Ordóñez y Av. Eugenio Garzón). Diseño de Claude Design en `diseno/` (no cambiarlo). Hasta el lanzamiento queda con `indexar: false` (noindex).
 
 - Repo: https://github.com/matias-bermudez/autoshop-automotora (público: GitHub Pages gratis no publica repos privados)
-- Web: https://matias-bermudez.github.io/autoshop-automotora/
+- Web: https://autoshop-automotora.pages.dev/
 - Seguimiento: issues del repo. Los commits cierran issues con `Closes #N`.
 
 ## Plataforma Automotoras
