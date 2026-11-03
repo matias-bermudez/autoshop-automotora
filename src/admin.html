@@ -1,0 +1,176 @@
+{{> head}}
+<body class="panel" data-raiz="{{raiz}}" data-vista="cargando">
+
+<p class="p-aviso" id="cargando">Cargando…</p>
+
+<section class="login" id="v-login" hidden>
+  <div class="login__izq">
+    <img class="login__logo" src="{{raiz}}img/logo.png" alt="AutoShop Automotora" width="120" height="120">
+    <h1 class="login__h1">Panel del dueño</h1>
+    <p class="login__p">Subí autos, cambiá precios y marcá reservados. Se actualiza en la web en un par de minutos.</p>
+    <div class="damero damero--login" aria-hidden="true"></div>
+  </div>
+  <div class="login__der">
+    <form class="login__form" id="f-login">
+      <h2 class="login__t">Ingresar</h2>
+      <label class="p-campo">Email<input type="email" name="email" autocomplete="username" required></label>
+      <label class="p-campo">Contraseña<input type="password" name="password" autocomplete="current-password" required></label>
+      <button type="button" class="p-link" id="olvide">Me olvidé la contraseña</button>
+      <p class="p-nota" id="olvide-txt" hidden>Pedile a quien te dio el acceso que te la cambie.</p>
+      <button class="p-btn p-btn--rojo p-btn--bloque" type="submit">Entrar</button>
+      <p class="p-error" id="login-error" hidden></p>
+      <p class="p-nota">Solo para el equipo de AutoShop. <a href="{{raiz}}">Volver a la web</a></p>
+    </form>
+  </div>
+</section>
+
+<div class="app" id="app" hidden>
+  <header class="p-top">
+    <a class="p-top__logo" href="{{raiz}}" target="_blank" rel="noopener" data-fresco aria-label="Ver la web"><img src="{{raiz}}img/logo.png" alt="" width="40" height="40"></a>
+    <span class="p-top__titulo solo-movil" id="titulo-movil">Mis autos</span>
+    <nav class="p-tabs solo-esc" aria-label="Panel">
+      <button type="button" class="p-tab" data-ir="lista" aria-current="page">Mis autos</button>
+      <button type="button" class="p-tab" data-ir="negocio">Datos del negocio</button>
+    </nav>
+    <a class="p-top__link" href="{{raiz}}" target="_blank" rel="noopener" data-fresco>Ver la web</a>
+    <button type="button" class="p-top__link" id="salir">Salir</button>
+  </header>
+
+  <main class="p-main">
+    <section class="p-lista" id="v-lista" aria-labelledby="h-lista">
+      <div class="p-lista__cab">
+        <h1 class="p-h1 solo-esc" id="h-lista">Mis autos</h1>
+        <span class="p-lista__resumen" id="resumen"></span>
+        <button type="button" class="p-btn p-btn--rojo solo-esc" data-nuevo>+ Agregar auto</button>
+      </div>
+      <label class="p-buscar">{{ic.buscar}}<input type="search" id="buscar" placeholder="Buscar por marca o modelo" aria-label="Buscar por marca o modelo"></label>
+      <div class="p-filtro" id="filtro" role="group" aria-label="Filtrar"></div>
+      <p class="p-nota" id="nota-publicacion">Lo que guardes se publica solo en la web en un par de minutos.</p>
+      <div class="p-items" id="lista"></div>
+    </section>
+
+    <section class="p-editor" id="v-editor" aria-labelledby="ed-titulo">
+      <p class="p-editor__vacio" id="ed-vacio">Elegí un auto de la lista para editarlo, o agregá uno nuevo.</p>
+      <form class="p-form" id="f-auto" novalidate hidden>
+        <div class="p-editor__cab">
+          <button type="button" class="p-volver solo-movil" data-cancelar aria-label="Volver a mis autos">{{ic.atras}}</button>
+          <h2 class="p-editor__t" id="ed-titulo">Agregar auto</h2>
+          <a class="p-top__link p-link--oscuro" id="ed-ver" href="#" target="_blank" rel="noopener" data-fresco hidden>Ver ficha en la web</a>
+        </div>
+
+        <section class="p-caja" aria-labelledby="h-fotos">
+          <h3 class="p-h3" id="h-fotos">Fotos</h3>
+          <p class="p-ayuda">Sacalas horizontales. La primera es la portada. Se recortan a 4:3 y se achican solas antes de subir.</p>
+          <div class="p-fotos-btns">
+            <label class="p-btn p-btn--negro p-foto-btn p-camara">{{ic.camara}}Sacar foto<input type="file" accept="image/*" capture="environment" id="f-camara"></label>
+            <label class="p-btn p-btn--borde p-foto-btn">{{ic.galeria}}<span class="solo-tactil">Elegir de la galería</span><span class="solo-compu">Subir fotos</span><input type="file" accept="image/*" multiple id="f-fotos"></label>
+          </div>
+          <p class="p-nota" id="subiendo" hidden></p>
+          <ol class="p-fotos" id="fotos"></ol>
+        </section>
+
+        <section class="p-caja" aria-labelledby="h-datos">
+          <h3 class="p-h3" id="h-datos">Datos</h3>
+          <div class="p-grid">
+            <label class="p-campo">Marca *<input name="marca" list="marcas" autocomplete="off" placeholder="Ej.: Toyota" required></label>
+            <label class="p-campo">Modelo *<input name="modelo" autocomplete="off" placeholder="Ej.: Aqua" required></label>
+            <label class="p-campo p-campo--ancho">Versión<input name="version" autocomplete="off" placeholder="Ej.: S 1.5 (opcional)"></label>
+            <label class="p-campo">Año<input name="anio" inputmode="numeric" autocomplete="off" placeholder="Vacío = a consultar"></label>
+            <label class="p-campo">Kilómetros<input name="km" inputmode="numeric" autocomplete="off" placeholder="Vacío = a consultar"></label>
+          </div>
+          <datalist id="marcas"></datalist>
+          <fieldset class="p-grupo"><legend>Combustible</legend><div class="p-chips" data-chips="combustible"></div></fieldset>
+          <fieldset class="p-grupo"><legend>Caja</legend><div class="p-chips" data-chips="transmision"></div></fieldset>
+          <fieldset class="p-grupo"><legend>Tipo</legend><div class="p-chips" data-chips="carroceria"></div></fieldset>
+          <fieldset class="p-grupo"><legend>Sucursal</legend><div class="p-chips" data-chips="sede"></div></fieldset>
+          <div class="p-grid p-grid--3">
+            <label class="p-campo">Color<input name="color" autocomplete="off" placeholder="Ej.: Gris"></label>
+            <label class="p-campo">Motor<input name="motor" autocomplete="off" placeholder="Ej.: 1.5"></label>
+            <label class="p-campo">Dueños<input name="duenos" inputmode="numeric" autocomplete="off"></label>
+          </div>
+        </section>
+
+        <section class="p-caja" aria-labelledby="h-precio">
+          <h3 class="p-h3" id="h-precio">Precio y financiación</h3>
+          <div class="p-precio">
+            <label class="p-campo p-campo--precio">Precio<input name="precio" inputmode="numeric" autocomplete="off" placeholder="Vacío = Consultar"></label>
+            <div class="p-moneda" role="group" aria-label="Moneda" data-chips="moneda"></div>
+          </div>
+          <label class="p-campo"><span>Sin clearing: cuota aprox. en <span data-cuotas>60</span> meses (U$S)</span><input name="cuota" inputmode="numeric" autocomplete="off" placeholder="Vacío = &quot;Consultá la cuota&quot;"></label>
+          <label class="p-campo">En clearing: entrega (%)<input name="entrega_pct" inputmode="numeric" autocomplete="off" data-pct-general></label>
+          <p class="p-ayuda" id="ayuda-precio"></p>
+        </section>
+
+        <section class="p-caja" aria-labelledby="h-estado">
+          <h3 class="p-h3" id="h-estado">Estado</h3>
+          <div class="p-seg" role="group" aria-label="Estado" data-chips="estado"></div>
+          <label class="p-switch"><span>Destacado en el inicio</span><input type="checkbox" name="destacado"><i></i></label>
+          <label class="p-switch"><span>Se ve en la web <small>(apagado = borrador)</small></span><input type="checkbox" name="publicado" checked><i></i></label>
+        </section>
+
+        <section class="p-caja" aria-labelledby="h-equipo">
+          <h3 class="p-h3" id="h-equipo">Equipamiento</h3>
+          <div class="p-chips p-chips--equipo" id="equipo"></div>
+          <div class="p-agregar">
+            <input id="equipo-otro" placeholder="Agregar otro…" aria-label="Agregar otro equipamiento" autocomplete="off">
+            <button type="button" class="p-btn p-btn--negro" id="equipo-agregar">Agregar</button>
+          </div>
+        </section>
+
+        <section class="p-caja" aria-labelledby="h-desc">
+          <h3 class="p-h3" id="h-desc">Descripción</h3>
+          <textarea name="descripcion" rows="5" aria-labelledby="h-desc" placeholder="Estado, services, si acepta permuta…"></textarea>
+        </section>
+
+        <p class="p-error" id="ed-error" hidden></p>
+        <button type="button" class="p-btn p-btn--peligro" id="borrar" hidden>Borrar este auto</button>
+        <div class="p-acciones">
+          <button type="button" class="p-btn p-btn--borde" data-cancelar>Descartar</button>
+          <button type="submit" class="p-btn p-btn--rojo" id="guardar">Guardar cambios</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="p-negocio" id="v-negocio" aria-labelledby="h-negocio">
+      <form id="f-negocio" novalidate>
+        <div class="p-negocio__cab">
+          <div>
+            <h1 class="p-h1" id="h-negocio">Datos del negocio</h1>
+            <p class="p-ayuda">Lo que cambies acá se actualiza en toda la web en un par de minutos.</p>
+          </div>
+          <button type="submit" class="p-btn p-btn--rojo solo-esc" data-guardar-negocio>Guardar cambios</button>
+        </div>
+        <div class="p-negocio__sedes" id="neg-sedes"></div>
+        <section class="p-caja p-caja--roja-no">
+          <h2 class="p-h3">General</h2>
+          <div class="p-grid p-grid--3">
+            <label class="p-campo">WhatsApp principal *<input name="whatsapp" type="tel" inputmode="tel" placeholder="Ej.: 099 123 456" autocomplete="off" required></label>
+            <label class="p-campo">Instagram<input name="instagram" placeholder="Usuario, sin @" autocomplete="off"></label>
+            <label class="p-campo">Facebook<input name="facebook" placeholder="Link de la página (opcional)" autocomplete="off"></label>
+          </div>
+          <p class="p-ayuda">El WhatsApp principal recibe las consultas de la web. Si un local tiene WhatsApp propio, los autos de ese local consultan a ese número.</p>
+          <label class="p-campo">Entrega para quien está en el clearing (%)<input name="entrega_pct" inputmode="numeric" placeholder="Ej.: 50" autocomplete="off"></label>
+          <label class="p-campo">Condiciones de financiación (texto chico en la web)<textarea name="condiciones" rows="3"></textarea></label>
+        </section>
+        <p class="p-error" id="neg-error" hidden></p>
+        <div class="p-acciones">
+          <button type="button" class="p-btn p-btn--borde" data-ir="lista">Volver</button>
+          <button type="submit" class="p-btn p-btn--rojo" data-guardar-negocio>Guardar cambios</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div class="p-abajo solo-movil">
+    <button type="button" class="p-btn p-btn--rojo p-btn--bloque p-abajo__nuevo" data-nuevo>{{ic.mas}} Agregar auto</button>
+    <nav class="p-abajo__tabs" aria-label="Panel">
+      <button type="button" class="p-tab" data-ir="lista" aria-current="page">Autos</button>
+      <button type="button" class="p-tab" data-ir="negocio">Datos del negocio</button>
+    </nav>
+  </div>
+</div>
+
+<div class="p-toast" id="toast" role="status" hidden></div>
+<script type="module" src="{{raiz}}js/admin.js?v={{v.admin}}"></script>
+</body>
+</html>
