@@ -1,0 +1,72 @@
+# Arma el sitio con scripts/generar.js y lo publica en GitHub Pages:
+# - en cada push a main;
+# - cuando se guarda un auto en el panel (Supabase dispara workflow_dispatch);
+# - cada 15 minutos, solo si cambiaron los autos (respaldo, y mantiene activo el proyecto de Supabase).
+name: Publicar
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: write
+
+# Sin cancelar: si no, un chequeo programado podría cortar la publicación de un push.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    outputs:
+      cambio: ${{ steps.generar.outputs.cambio }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      # Fotos ya bajadas en publicaciones anteriores (no cambian nunca): solo se bajan las nuevas.
+      - uses: actions/cache/restore@v6
+        with:
+          path: .cache/fotos
+          key: fotos-${{ github.run_id }}
+          restore-keys: fotos-
+      - id: generar
+        run: node scripts/generar.js
+        env:
+          SOLO_SI_CAMBIO: ${{ github.event_name == 'schedule' && '1' || '' }}
+      - if: steps.generar.outputs.cambio == 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: .cache/fotos
+          key: fotos-${{ hashFiles('.cache/fotos/**') }}
+      - if: steps.generar.outputs.cambio == 'true'
+        uses: actions/configure-pages@v6
+      - if: steps.generar.outputs.cambio == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      # GitHub apaga los workflows programados de repos públicos a los 60 días sin commits; esto lo mantiene vivo.
+      - name: Mantener activa la publicación automática
+        if: github.event_name == 'schedule'
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/publicar.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  publicar:
+    needs: generar
+    if: needs.generar.outputs.cambio == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v5
